@@ -11,5 +11,5 @@ CREATE TABLE "shoppingList" (
 INSERT INTO "shoppingList" 
   ("name", "quantity", "unit")
   VALUES
-  ('Apples', 4.5, 'lbs');
-  
+  ('Apples', 4.5, 'lbs'),
+  ('Bread', 1, 'loaf');
