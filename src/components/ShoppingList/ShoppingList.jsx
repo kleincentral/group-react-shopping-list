@@ -1,9 +1,30 @@
 import ShoppingListItem from "../ShoppingListItem/ShoppingListItem";
+import { useState } from "react";
+import axios from "axios";
 
 function ShoppingList({ shoppingList, getList }) {
+  const reset = () => {
+    console.log("resetting");
+    axios
+      .put("/shopping")
+      .then((response) => {
+        getList();
+      })
+      .catch((err) => {
+        alert("error updating list");
+        console.log(err);
+      });
+  };
+  const clear = () => {
+    console.log("hi");
+  };
   return (
     <>
       <h2>Shopping List</h2>
+      <div>
+        <button onClick={reset}>Reset</button>
+        <button onClick={clear}>Clear</button>
+      </div>
       <ul>
         {shoppingList.map((item) => {
           return (

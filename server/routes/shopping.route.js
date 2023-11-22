@@ -54,6 +54,22 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+router.put("/", (req, res) => {
+  const sqlText = `
+  UPDATE "shoppingList"
+  SET "bought" = false`;
+  pool
+    .query(sqlText)
+    .then((result) => {
+      console.log("Updated bought to false everywhere");
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("Error in database query:", sqlText);
+      res.sendStatus(500);
+    });
+});
+
 router.put("/:id", (req, res) => {
   const sqlText = `
   UPDATE "shoppingList"
