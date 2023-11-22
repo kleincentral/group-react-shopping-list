@@ -1,8 +1,17 @@
 import axios from "axios";
 
-function ShoppingListItem({ id, name, quantity, unit, getList }) {
+function ShoppingListItem({ id, name, quantity, unit, bought, getList }) {
   const buyItem = () => {
     console.log("Money", id);
+    axios
+      .put(`/shopping/${id}`)
+      .then((response) => {
+        getList();
+      })
+      .catch((err) => {
+        alert("error updating list");
+        console.log(err);
+      });
   };
   const removeItem = () => {
     console.log("Begone", id);
@@ -19,8 +28,15 @@ function ShoppingListItem({ id, name, quantity, unit, getList }) {
   return (
     <>
       <li>
-        {name}: {`${quantity} ${unit}`} <button onClick={buyItem}>Buy</button>{" "}
-        <button onClick={removeItem}>Remove</button>
+        {name}: {`${quantity} ${unit}`}
+        {bought ? (
+          " Purchased"
+        ) : (
+          <>
+            <button onClick={buyItem}>Buy</button>{" "}
+            <button onClick={removeItem}>Remove</button>
+          </>
+        )}
       </li>
     </>
   );

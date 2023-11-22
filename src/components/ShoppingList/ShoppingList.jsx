@@ -13,6 +13,7 @@ function ShoppingList({ shoppingList, getList }) {
               name={item.name}
               quantity={item.quantity}
               unit={item.unit}
+              bought={item.bought}
               getList={getList}
             />
             // <li key={item.id}>{item.name}: {item.quantity}{item.unit}</li>
