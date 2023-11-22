@@ -70,6 +70,21 @@ router.put("/", (req, res) => {
     });
 });
 
+router.delete("/", (req, res) => {
+  const sqlText = `
+  DELETE FROM "shoppingList"`;
+  pool
+    .query(sqlText)
+    .then((result) => {
+      console.log("Deleted everything");
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("Error in database query:", sqlText);
+      res.sendStatus(500);
+    });
+});
+
 router.put("/:id", (req, res) => {
   const sqlText = `
   UPDATE "shoppingList"

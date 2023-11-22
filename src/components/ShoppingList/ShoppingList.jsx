@@ -16,7 +16,16 @@ function ShoppingList({ shoppingList, getList }) {
       });
   };
   const clear = () => {
-    console.log("hi");
+    console.log("delete");
+    axios
+      .delete("/shopping")
+      .then((response) => {
+        getList();
+      })
+      .catch((err) => {
+        alert("error updating list");
+        console.log(err);
+      });
   };
   return (
     <>
