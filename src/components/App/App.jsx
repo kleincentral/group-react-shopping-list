@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
+import ShoppingForm from "../ShoppingForm/ShoppingForm.jsx";
 
 function App() {
   const [shoppingList, setShoppingList] = useState([]);
@@ -28,6 +29,7 @@ function App() {
     <div className="App">
       <Header />
       <main>
+        <ShoppingForm getList={getList} />
         <ShoppingList shoppingList={shoppingList} getList={getList} />
       </main>
     </div>

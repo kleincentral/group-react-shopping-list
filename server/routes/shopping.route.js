@@ -18,6 +18,25 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  const sqlText = `
+  INSERT INTO "shoppingList"
+  ("name", "quantity", "unit")
+  VALUES
+  ($1, $2, $3);`;
+  const sqlValues = [req.body.name, req.body.quantity, req.body.unit];
+  pool
+    .query(sqlText, sqlValues)
+    .then((result) => {
+      console.log("Posted to Server:", sqlValues);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error in database query:", sqlText);
+      res.sendStatus(500);
+    });
+});
+
 router.delete("/:id", (req, res) => {
   const sqlText = `
   DELETE FROM "shoppingList"
